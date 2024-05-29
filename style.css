@@ -22,7 +22,6 @@ body {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 1.2rem;
-  text-transform: uppercase;
 }
 
 .topnav .search-container{
@@ -35,7 +34,7 @@ form{
   height: 43px;
   border-radius: 11px;
   display: flex;
-  alight-items: center;
+  align-items: center;
 }
 
 input {
@@ -50,6 +49,7 @@ input {
   height: 350px;
   width: 300px;
   border-radius: 19px;
+  object-fit: cover;
 }
 
 .column {

@@ -1,88 +1,69 @@
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
   background-color: #131720;
-  font-family: 'Arial', sans-serif;
+  font-family: sans-serif;
   color: white;
-  line-height: 1.6;
 }
 
 .topnav {
   overflow: hidden;
   background-color: #131720;
-  padding: 15px 30px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  padding: 10px;
 }
 
 .topnav a {
   float: left;
   display: block;
-  color: white;
+  color: #4CAF50; /* Green color */
   text-align: center;
-  padding: 14px 20px;
+  padding: 14px 16px;
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 1.5rem; /* Bigger font size */
   font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.topnav a:hover {
-  color: #4a90e2;
-}
-
-.topnav .search-container {
-  float: right;
-}
-
-form {
-  background-color: #151f30;
-  width: 300px;
-  height: 45px;
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  padding: 0 15px;
   transition: all 0.3s ease;
 }
 
-form:focus-within {
-  box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+.topnav a:hover {
+  text-decoration: underline;
+  color: #45a049; /* Slightly darker green on hover */
+}
+
+.topnav .search-container{
+  float: right;
+}
+
+form{
+  background-color: #151f30;
+  width: 300px;
+  height: 43px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
 }
 
 input {
-  font: 15px 'Arial', sans-serif;
-  color: white;
-  background: transparent;
-  border: none;
+  font: 15px system-ui;
+  color: black;
   height: 100%;
   width: 100%;
-  padding: 0 10px;
-  outline: none;
+  padding: 6px 9px;
 }
 
-input::placeholder {
-  color: #8a9bad;
+.thumbnail {
+  height: 350px;
+  width: 300px;
+  border-radius: 19px;
+  object-fit: cover;
 }
 
-/* Main content container */
-#section {
-  padding: 30px 0;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Row and Column Layout */
 .row {
   display: flex;
   flex-wrap: wrap;
   margin: 0 -10px;
-  padding: 0 15px;
-  justify-content: center;
+  width: 100%;
 }
 
 .column {
@@ -92,105 +73,71 @@ input::placeholder {
   box-sizing: border-box;
 }
 
-/* Card Styling */
 .card {
-  background-color: #1a2238;
-  border-radius: 12px;
+  border-radius: 19px;
   padding: 15px;
   text-align: center;
+  background-color: #151f30;
   height: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.thumbnail {
-  width: 100%;
-  height: 350px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  transition: transform 0.3s ease;
-}
-
-.thumbnail:hover {
-  transform: scale(1.02);
-}
-
-.movie-title {
-  color: #fff;
-  font-size: 1.1rem;
+.title {
   margin: 10px 0;
-  flex-grow: 1;
+  font-size: 1rem;
+  min-height: 2.5em;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
-.movie-title a {
-  color: #4a90e2;
+.title a {
+  color: #4CAF50;
   text-decoration: none;
   font-size: 0.9rem;
-  margin-top: 10px;
-  transition: color 0.3s ease;
+  margin-top: 5px;
 }
 
-.movie-title a:hover {
-  color: #6aa8ff;
+.title a:hover {
   text-decoration: underline;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 1200px) {
-  .column {
-    flex: 0 0 33.333%;
-    max-width: 33.333%;
-  }
+/* Review Save Button */
+.card a[onclick*="saveReview"] {
+  color: #4CAF50;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
-@media screen and (max-width: 900px) {
-  .column {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-  
-  .topnav a {
-    padding: 14px 10px;
-    font-size: 1.2rem;
-  }
-  
-  form {
-    width: 250px;
-  }
+.card a[onclick*="saveReview"]:hover {
+  color: #45a049;
+  text-decoration: underline;
 }
 
-@media screen and (max-width: 600px) {
-  .column {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-  
-  .topnav {
-    padding: 10px 15px;
-  }
-  
-  .topnav a {
-    font-size: 1.1rem;
-    padding: 10px 8px;
-  }
-  
-  form {
-    width: 200px;
-    height: 40px;
-  }
-  
-  .thumbnail {
-    height: 300px;
-  }
+/* Full-width review cards on movie review page */
+body.movie-page .column {
+  flex: 0 0 80%;
+  max-width: 80%;
+  padding: 10px 0;
+}
+
+body.movie-page .card {
+  width: 80%;
+  margin: auto;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: left;
+}
+
+body.movie-page .row {
+  margin: 0;
+  max-width: 80%;
+  margin: auto;
 }

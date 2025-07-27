@@ -14,36 +14,56 @@ function returnMovies(url) {
     .then((res) => res.json())
     .then(function (data) {
       console.log(data.results);
-      data.results.forEach((element) => {
+      
+      // Clear the main container first
+      main.innerHTML = '';
+      
+      // Create a single row to hold all columns
+      let currentRow = document.createElement("div");
+      currentRow.setAttribute("class", "row");
+      
+      data.results.forEach((element, index) => {
+        // Create a new row for every 4 movies
+        if (index > 0 && index % 4 === 0) {
+          main.appendChild(currentRow);
+          currentRow = document.createElement("div");
+          currentRow.setAttribute("class", "row");
+        }
+
         const div_card = document.createElement("div");
         div_card.setAttribute("class", "card");
-
-        const div_row = document.createElement("div");
-        div_row.setAttribute("class", "row");
 
         const div_column = document.createElement("div");
         div_column.setAttribute("class", "column");
 
         const image = document.createElement("img");
         image.setAttribute("class", "thumbnail");
-        image.setAttribute("id", "image");
+        image.setAttribute("alt", element.title);
 
         const title = document.createElement("h3");
-        title.setAttribute("id", "title");
+        title.setAttribute("class", "movie-title");
 
         const center = document.createElement("center");
 
-        title.innerHTML = `${element.title}<br><a href="movie.html?id=${element.id}&title=${element.title}">Add Review</a>`;
-        image.src = IMG_PATH + element.poster_path;
+        title.innerHTML = `${element.title}<br><a href="movie.html?id=${element.id}&title=${encodeURIComponent(element.title)}">Add Review</a>`;
+        image.src = element.poster_path ? IMG_PATH + element.poster_path : 'https://via.placeholder.com/300x450?text=No+Poster';
+        
+        // Add a fallback image in case the poster fails to load
+        image.onerror = function() {
+          this.src = 'https://via.placeholder.com/300x450?text=No+Poster';
+        };
 
         center.appendChild(image);
         div_card.appendChild(center);
         div_card.appendChild(title);
         div_column.appendChild(div_card);
-        div_row.appendChild(div_column);
-
-        main.appendChild(div_row);
+        currentRow.appendChild(div_column);
       });
+      
+      // Append the last row if it has any content
+      if (currentRow.children.length > 0) {
+        main.appendChild(currentRow);
+      }
     });
 }
 

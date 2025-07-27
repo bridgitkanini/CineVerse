@@ -1,6 +1,30 @@
 # CineVerse - Movie Review Application
 
-CineVerse is a web application that allows users to browse popular movies, search for specific films, and add personal reviews. The application fetches movie data from The Movie Database (TMDb) API and provides a simple interface for users to interact with movie information.
+CineVerse is a responsive web application that allows users to browse popular movies, search for specific films, and add personal reviews. The application fetches movie data from The Movie Database (TMDb) API and provides an intuitive interface for users to interact with movie information. Built with modern web technologies, CineVerse offers a seamless experience across all device sizes.
+
+## Tech Stack
+
+### Frontend
+- **HTML5**: Semantic markup for better accessibility and SEO
+- **CSS3**: Modern styling with CSS variables, Flexbox, and Grid
+- **JavaScript (ES6+)**: Dynamic content loading and DOM manipulation
+- **Responsive Design**: Mobile-first approach with media queries
+- **Animations**: Smooth transitions and hover effects
+
+### Backend & APIs
+- **External API**: The Movie Database (TMDb) for fetching movie data, posters, and metadata
+- **Custom Review API**: For storing and managing user reviews
+
+### Development Tools
+- **Git**: Version control
+- **Modern JavaScript Features**: Async/await, Fetch API, Template Literals
+- **CSS Custom Properties**: For consistent theming and easy customization
+- **Progressive Enhancement**: Core functionality works without JavaScript
+
+### Performance
+- Lazy loading of images
+- Efficient DOM updates
+- Minified and optimized assets
 
 ## Features
 
@@ -10,17 +34,6 @@ CineVerse is a web application that allows users to browse popular movies, searc
 - **User Reviews**: Add, edit, and delete personal reviews for movies
 - **Responsive Design**: Works on both desktop and mobile devices
 
-## Technologies Used
-
-- **Frontend**:
-  - HTML5
-  - CSS3
-  - JavaScript (ES6+)
-  - Fetch API for server communication
-
-- **Backend**:
-  - External API: The Movie Database (TMDb) for movie data
-  - Review Backend: Custom API endpoint for storing reviews
 
 ## Project Structure
 

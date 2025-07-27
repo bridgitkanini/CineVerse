@@ -1,62 +1,91 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #4CAF50;
+  --primary-hover: #45a049;
+  --bg-color: #131720;
+  --card-bg: #151f30;
+  --text-color: #ffffff;
+  --container-padding: 15px;
 }
 
 body {
-  background-color: #131720;
-  font-family: sans-serif;
-  color: white;
+  background-color: var(--bg-color);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .topnav {
-  overflow: hidden;
-  background-color: #131720;
-  padding: 10px;
+  background-color: var(--bg-color);
+  padding: 10px var(--container-padding);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .topnav a {
-  float: left;
-  display: block;
-  color: #4CAF50; /* Green color */
-  text-align: center;
-  padding: 14px 16px;
+  color: var(--primary-color);
   text-decoration: none;
-  font-size: 1.5rem; /* Bigger font size */
+  font-size: 1.5rem;
   font-weight: bold;
   transition: all 0.3s ease;
+  padding: 10px 15px;
+  white-space: nowrap;
 }
 
 .topnav a:hover {
   text-decoration: underline;
-  color: #45a049; /* Slightly darker green on hover */
+  color: var(--primary-hover);
 }
 
-.topnav .search-container{
-  float: right;
-}
-
-form{
-  background-color: #151f30;
-  width: 300px;
+form {
+  background-color: var(--card-bg);
+  width: 100%;
+  max-width: 400px;
   height: 43px;
   border-radius: 11px;
   display: flex;
   align-items: center;
+  margin: 10px 0;
 }
 
 input {
   font: 15px system-ui;
-  color: black;
+  color: #000000;
   height: 100%;
   width: 100%;
-  padding: 6px 9px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--text-color);
+}
+
+input:focus {
+  outline: 2px solid var(--primary-color);
 }
 
 .thumbnail {
-  height: 350px;
-  width: 300px;
+  width: 100%;
+  height: auto;
+  max-width: 300px;
   border-radius: 19px;
   object-fit: cover;
+  margin: 0 auto;
+  display: block;
 }
 
 .row {
@@ -64,23 +93,25 @@ input {
   flex-wrap: wrap;
   margin: 0 -10px;
   width: 100%;
+  padding: 0 var(--container-padding);
 }
 
 .column {
-  flex: 0 0 25%;
-  max-width: 25%;
+  flex: 0 0 100%;
+  max-width: 100%;
   padding: 10px;
   box-sizing: border-box;
 }
 
 .card {
   border-radius: 19px;
-  padding: 15px;
+  padding: 20px;
   text-align: center;
-  background-color: #151f30;
+  background-color: var(--card-bg);
   height: 100%;
   box-sizing: border-box;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
@@ -90,54 +121,372 @@ input {
 
 .title {
   margin: 10px 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
   min-height: 2.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  word-break: break-word;
 }
 
 .title a {
-  color: #4CAF50;
+  color: var(--primary-color);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-top: 5px;
+  transition: color 0.3s ease;
 }
 
 .title a:hover {
+  color: var(--primary-hover);
   text-decoration: underline;
 }
 
 /* Review Save Button */
 .card a[onclick*="saveReview"] {
-  color: #4CAF50;
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: rgba(76, 175, 80, 0.1);
+  border-radius: 5px;
+  margin: 5px;
 }
 
 .card a[onclick*="saveReview"]:hover {
-  color: #45a049;
-  text-decoration: underline;
+  color: var(--primary-hover);
+  background-color: rgba(76, 175, 80, 0.2);
+  text-decoration: none;
 }
 
 /* Full-width review cards on movie review page */
 body.movie-page .column {
-  flex: 0 0 80%;
-  max-width: 80%;
+  flex: 0 0 100%;
+  max-width: 100%;
   padding: 10px 0;
 }
 
 body.movie-page .card {
-  width: 80%;
-  margin: auto;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
   border-radius: 20px;
   padding: 20px;
   text-align: left;
 }
 
 body.movie-page .row {
-  margin: 0;
-  max-width: 80%;
-  margin: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
+
+/* Action buttons in reviews */
+.card a[onclick*="editReview"],
+.card a[onclick*="deleteReview"] {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card a[onclick*="editReview"]:hover,
+.card a[onclick*="deleteReview"]:hover {
+  background: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (min-width: 576px) {
+  .column {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  body.movie-page .card {
+    padding: 25px;
+  }
+}
+
+@media (min-width: 768px) {
+  .topnav {
+    padding: 15px 5%;
+  }
+  
+  .row {
+    padding: 0 5%;
+  }
+  
+  .column {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+  
+  body.movie-page .column {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+  
+  .thumbnail {
+    max-width: 250px;
+  }
+}
+
+@media (min-width: 992px) {
+  .column {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  
+  body.movie-page .column {
+    flex: 0 0 80%;
+    max-width: 80%;
+  }
+  
+  .card {
+    padding: 25px;
+  }
+}
+
+/* Large desktops */
+@media (min-width: 1200px) {
+  .row {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  body.movie-page .card {
+    max-width: 1000px;
+  }
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #2c3e50;
+  border-radius: 8px;
+  background-color: #1a2533;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+  outline: none;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  margin: 0.25rem;
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: #2c3e50;
+}
+
+.btn-secondary:hover {
+  background-color: #34495e;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.875rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+/* Review Cards */
+.review-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #2c3e50;
+}
+
+.review-user {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+.review-date {
+  font-size: 0.85rem;
+  color: #95a5a6;
+}
+
+.review-content {
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+  color: #ecf0f1;
+}
+
+.review-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: #95a5a6;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ecf0f1;
+  transform: scale(1.1);
+}
+
+/* Loading Indicator */
+.loading-indicator {
+  text-align: center;
+  padding: 2rem;
+  color: #95a5a6;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1rem;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error Message */
+.error-message {
+  background-color: #e74c3c;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.error-message p {
+  margin-bottom: 1rem;
+}
+
+.retry-button {
+  background-color: white;
+  color: #e74c3c;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.retry-button:hover {
+  background-color: #f5f5f5;
+}
+
+/* No Reviews Message */
+.no-reviews {
+  text-align: center;
+  padding: 2rem;
+  color: #95a5a6;
+  font-style: italic;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Utility classes */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.text-center { text-align: center; }
+.text-muted { color: #95a5a6; }

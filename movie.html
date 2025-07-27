@@ -1,23 +1,42 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
-  <title>CineVerse</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineVerse - Movie Reviews</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="movie-page">
+  <header class="topnav">
+    <a href="index.html">CineVerse</a>
+  </header>
 
-  <div class="topnav">
-    <a class="active" href="index.html">CineVerse</a>
-  </div>
-  <div id="section" class="card">
-    <h1>Reviews for:</h1>
-    <h3 id="title">Movie Title</h3>
-  </div>
+  <main id="section">
 
+    <!-- Review Form -->
+    <div class="card">
+      <h1>Reviews for: <span id="title">Movie Title</span></h1>
+      <h3>Write a Review</h3>
+      <div class="form-group">
+        <label for="new_review">Your Review:</label>
+        <textarea id="new_review" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="new_user">Your Name:</label>
+        <input type="text" id="new_user" required>
+      </div>
+      <button onclick="saveReview('new_review', 'new_user')" class="submit-btn">
+        Submit Review
+      </button>
+    </div>
+
+    <!-- Reviews Container -->
+    <div id="reviews-container"></div>
+  </main>
+
+  <script src="movie.js"></script>
 </body>
-<script src="movie.js"></script>
 
 </html>

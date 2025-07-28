@@ -50,12 +50,23 @@ function returnMovies(url) {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  main.innerHTML = "";
-
-  const searchItem = search.value;
-
+  
+  const searchItem = search.value.trim();
+  
   if (searchItem) {
-    returnMovies(SEARCHAPI + searchItem);
+    // Clear previous search results
+    const existingRow = document.querySelector('.row');
+    if (existingRow) {
+      existingRow.remove();
+    }
+    
+    // Create a new row for search results
+    const newRow = document.createElement("div");
+    newRow.setAttribute("class", "row");
+    main.appendChild(newRow);
+    
+    // Perform the search
+    returnMovies(SEARCHAPI + encodeURIComponent(searchItem));
     search.value = "";
   }
 });
